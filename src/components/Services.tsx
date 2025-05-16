@@ -7,9 +7,12 @@ import { motion } from "framer-motion";
 import type { FC } from 'react';
 import { useState } from 'react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { useServicesStore } from "@/lib/servicesStore";
+import type { ServiceCard } from "@/lib/servicesData";
 
 const Services: FC = () => {
     const [imageLoading, setImageLoading] = useState(true);
+    const cards = useServicesStore((state: { cards: ServiceCard[] }) => state.cards);
 
     const handleWhatsAppClick = (planTitle: string) => {
         const message = `Hi, I'm interested in the ${planTitle} for Shopify development services.`;
@@ -28,46 +31,13 @@ const Services: FC = () => {
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-800 tracking-tight">
                     Limited Period Offer
                 </h1>
-                <p className="text-sm md:text-lg text-gray-600 max-w-2xl mx-auto">
+                <p className="text-sm md:text-lg text-gray-600 max-w-2xl mx-auto text-center">
                     Avail our services at special discounted rates. Offer ends soon!
                 </p>
             </motion.div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 w-full max-w-7xl">
-                {[
-                    {
-                        title: "Basic Plan",
-                        price: "INR 2000",
-                        description: "Perfect for startups and small businesses taking their first step into eCommerce.",
-                        features: [
-                            "Complete Store Design & Development",
-                            "Shopify Store Setup",
-                            "Payment Gateway Integration",
-                            "Shopify Training & Walkthrough"
-                        ]
-                    },
-                    {
-                        title: "Premium Plan",
-                        price: "INR 6500",
-                        description: "Ideal for growing brands that want enhanced customer experience and smoother transactions.",
-                        features: [
-                            "Includes Everything in Basic",
-                            "Checkout Integration (Optimized for conversions)"
-                        ],
-                        highlighted: true
-                    },
-                    {
-                        title: "Professional Plan",
-                        price: "INR 15000",
-                        description: "Best suited for established businesses looking for a fully functional and conversion-driven Shopify store.",
-                        features: [
-                            "Includes Everything in Premium",
-                            "Advanced Customizations & Tweaks (UI/UX based)",
-                            "Performance Optimization",
-                            "Strategic Store Structuring for Better Sales"
-                        ]
-                    }
-                ].map((plan, index) => (
+                {cards.map((plan: ServiceCard, index: number) => (
                     <motion.div
                         key={plan.title}
                         initial={{ opacity: 0, y: 20 }}
@@ -122,7 +92,7 @@ const Services: FC = () => {
                                 <div className="flex flex-col space-y-4">
                                     <h3 className="text-lg font-semibold text-gray-700">Key Features:</h3>
                                     <ul className="space-y-3">
-                                        {plan.features.map((feature, i) => (
+                                        {plan.features.map((feature: string, i: number) => (
                                             <li key={i} className="flex items-start space-x-3">
                                                 <svg className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
