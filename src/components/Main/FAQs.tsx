@@ -27,7 +27,7 @@ const faqData = [
 
 export default function FAQs() {
     return (
-        <div className="flex flex-col items-center justify-center w-full h-full pb-12 px-4 md:px-6 lg:px-8">
+        <div className="flex flex-col items-center justify-center w-full h-full py-12 px-4 md:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-gray-300">
             <div className="max-w-4xl w-full">
                 <h2 className="text-3xl md:text-4xl lg:text-5xl mb-6 text-gray-800 tracking-tight text-center">
                     Frequently Asked <span className="font-bold">Questions</span>
@@ -42,7 +42,7 @@ export default function FAQs() {
                         <AccordionItem
                             key={faq.id}
                             value={faq.id}
-                            className="border-b-2 border-gray-800 last:border-b-0"
+                            className="border-b-1 border-gray-800 last:border-b-1"
                         >
                             <AccordionTrigger className="text-lg font-medium hover:text-gray-700 transition-colors">
                                 <div className="flex items-center justify-between gap-4">

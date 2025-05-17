@@ -4,15 +4,18 @@ import { Suspense, lazy, useEffect } from 'react';
 import Header from "@/components/Main/Header";
 import { preloadCriticalAssets } from '@/lib/lazyLoad';
 import { deferExecution, loadPolyfillsIfNeeded, shouldServeModernBundle } from '@/lib/optimizeBundle';
+import { Separator } from '@/components/ui/separator';
 
 // Lazy load non-critical components
 const Services = lazy(() => import("@/components/Main/Services"));
+const Needs = lazy(() => import("@/components/Main/Needs"));
 const Process = lazy(() => import("@/components/Main/Process"));
 const FAQs = lazy(() => import("@/components/Main/FAQs"));
 const Footer = lazy(() => import("@/components/Main/Footer"));
 
 // Loading fallbacks
 const ServicesFallback = () => <div className="w-full h-96 bg-gray-100 animate-pulse"></div>;
+const NeedsFallback = () => <div className="w-full h-96 bg-gray-100 animate-pulse"></div>;
 const ProcessFallback = () => <div className="w-full h-64 bg-gray-50 animate-pulse"></div>;
 const FAQsFallback = () => <div className="w-full h-64 bg-gray-100 animate-pulse"></div>;
 const FooterFallback = () => <div className="w-full h-96 bg-black"></div>;
@@ -94,6 +97,12 @@ export default function Home() {
         <Services />
       </Suspense>
       
+      <Suspense fallback={<NeedsFallback />}>
+        <Needs />
+      </Suspense>
+
+      <Separator />
+
       <Suspense fallback={<ProcessFallback />}>
         <Process />
       </Suspense>

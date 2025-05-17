@@ -57,8 +57,8 @@ export default function Footer() {
                             quality={100}
                             className="hover:opacity-90 transition-all duration-500 w-56 h-23 hover:scale-105 filter hover:brightness-110"
                         />
-                        <p className="text-xs text-gray-300 hover:text-white transition-colors duration-300 py-1">Designing Exceptional Web Experiences that</p>
-                        <p className="text-xs text-gray-300 hover:text-white transition-colors duration-300 py-1">Bring More Happiness to the Digital World.</p>
+                        <p className="text-xs text-gray-300 hover:text-white transition-colors duration-300 py-1">Designing Exceptional Web Experiences that<br />Bring More Happiness to the Digital World.</p>
+
                     </div>
                 </div>
             </div>
@@ -82,16 +82,16 @@ export default function Footer() {
                 </div>
                 <div className="flex flex-col md:flex-row items-center gap-6">
                     <Link href="#" aria-label="Facebook" target="_blank" className="bg-white/90 hover:bg-white rounded-full transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20 p-3">
-                        <Facebook className="w-8 h-8 text-black transition-colors duration-300" />
+                        <Facebook className="w-6 h-6 text-black transition-colors duration-300" />
                     </Link>
                     <Link href="#" aria-label="Instagram" target="_blank" className="bg-white/90 hover:bg-white rounded-full transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20 p-3">
-                        <Instagram className="w-8 h-8 text-black" />
+                        <Instagram className="w-6 h-6 text-black" />
                     </Link>
                     <Link href="#" aria-label="LinkedIn" target="_blank" className="bg-white/90 hover:bg-white rounded-full transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20 p-3">
-                        <Linkedin className="w-8 h-8 text-black" />
+                        <Linkedin className="w-6 h-6 text-black" />
                     </Link>
                     <Link href="#" aria-label="Twitter" target="_blank" className="bg-white/90 hover:bg-white rounded-full transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/20 p-3">
-                        <Twitter className="w-8 h-8 text-black" />
+                        <Twitter className="w-6 h-6 text-black" />
                     </Link>
                 </div>
             </div>

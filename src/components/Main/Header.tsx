@@ -12,6 +12,7 @@ import {
     NavigationMenuIndicator,
     NavigationMenuViewport
 } from "@/components/ui/navigation-menu";
+import { BriefcaseBusiness, MessageSquarePlus, PencilRuler, Printer } from 'lucide-react';
 
 export default function Header() {
     // Preload the logo image (local asset only)
@@ -22,14 +23,14 @@ export default function Header() {
     return (
         <h1>
             <header className="flex justify-between items-center p-4 bg-black text-white sm:px-4 md:px-6 lg:px-12" role="banner">
-                <Link href="/" aria-label="Home" className="p-2 min-w-[44px] min-h-[44px] inline-flex items-center justify-center">
+                <Link href="/" aria-label="Home" className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center">
                     <Image
                         src="/logo.webp"
-                        width={24}
-                        height={60}
+                        width={200}
+                        height={200}
                         quality={100}
-                        style={{ width: '10%', height: 'auto' }}
-                        sizes="(max-width: 768px) 100vw, (min-width: 768px) 50vw"
+                        style={{ width: '100%', height: 'auto' }}
+                        sizes='6vw'
                         alt="Logo"
                         priority={true}
                         className="w-24 h-auto"
@@ -39,29 +40,29 @@ export default function Header() {
                     <NavigationMenuList className="font-bold space-x-4">
                         <NavigationMenuItem className="p-2">
                             <NavigationMenuLink asChild>
-                                <Link href="/" tabIndex={0} className="p-2 min-w-[44px] min-h-[44px] inline-flex items-center">What we do?</Link>
+                                <Link href="/" tabIndex={0} className="p-2 min-w-[44px] min-h-[44px] inline-flex items-center justify-center"><BriefcaseBusiness className='text-white group-hover:text-black' /> What we do?</Link>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
                         <NavigationMenuItem className="p-2">
                             <NavigationMenuLink asChild>
-                                <Link href="/about" tabIndex={0} className="p-2 min-w-[44px] min-h-[44px] inline-flex items-center">Portfolio</Link>
+                                <Link href="/about" tabIndex={0} className="p-2 min-w-[44px] min-h-[44px] inline-flex items-center justify-center"><PencilRuler className='text-white group-hover:text-black' /> Portfolio</Link>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
                         <NavigationMenuItem className="p-2">
                             <NavigationMenuLink asChild>
-                                <Link href="/contact" tabIndex={0} className="p-2 min-w-[44px] min-h-[44px] inline-flex items-center">Testinomials</Link>
+                                <Link href="/contact" tabIndex={0} className="p-2 min-w-[44px] min-h-[44px] inline-flex items-center justify-center"><MessageSquarePlus className='text-white group-hover:text-black' /> Testinomials</Link>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
                         <NavigationMenuItem className="p-2">
                             <NavigationMenuLink asChild>
-                                <Link href="/contact" tabIndex={0} className="p-2 min-w-[44px] min-h-[44px] inline-flex items-center">Plans</Link>
+                                <Link href="/contact" tabIndex={0} className="p-2 min-w-[44px] min-h-[44px] inline-flex items-center justify-center"><Printer className='text-white group-hover:text-black' /> Plans</Link>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
                     </NavigationMenuList>
                     <NavigationMenuIndicator />
                     <NavigationMenuViewport />
                 </NavigationMenu>
-                <Button className="text-black font-bold rounded p-4 min-w-[44px] min-h-[44px]" variant="outline">
+                <Button className="text-black font-bold rounded p-2 min-w-[44px] min-h-[44px]" variant="outline">
                     <Link href="/contact" tabIndex={0} aria-label="Contact Us" className="p-2">Contact Us</Link>
                 </Button>
             </header>

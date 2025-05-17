@@ -1,43 +1,26 @@
-import { ArrowDown, Flag } from "lucide-react";
+import { Flag, Heart, Star } from "lucide-react";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
-export default function Process() {
-    const steps = [
+export default function Need() {
+    const needs = [
         {
             id: 1,
-            title: "Theme Selection",
-            description: "Explore Social Bubble's curated Shopify themes for any modern store—whether a minimal boutique or a feature-rich megastore, our designs provide the ideal eCommerce foundation.",
-            icon: <ArrowDown />
+            title: "Need Extra Features",
+            description: "Pre-built themes may lack advanced features. Customize with filters, sliders, and popups for a tailored experience.",
+            icon: <Star />
         },
         {
             id: 2,
-            title: "Custom Coding Advanced Features",
-            description: "We develop advanced eCommerce features—like bundle builders, mega menus, and cross-sells—giving your store the tools for higher conversions and a customized brand experience.",
-            icon: <ArrowDown />
+            title: "Theme Migration",
+            description: "Upgrading to a new Shopify theme? We’ll migrate and optimize your store for a better user experience.",
+            icon: <Flag />
         },
         {
             id: 3,
-            title: "Making CRO-Focused Store Layout",
-            description: "We craft result-driven layouts grounded in Conversion Rate Optimization. We balance eye-catching design with a seamless shopping path—so every visitor is encouraged to take action.",
-            icon: <ArrowDown />
-        },
-        {
-            id: 4,
-            title: "Product & Collection Page A+ Listing",
-            description: "Showcase your products with engaging infographics that spotlight core features, benefits, and brand story—turning visitors into informed buyers.",
-            icon: <ArrowDown />
-        },
-        {
-            id: 5,
-            title: "High Quality Website Banners",
-            description: "We craft visually captivating banners that leave a lasting impression—each design carefully tailored to your brand's style and message.",
-            icon: <ArrowDown />
-        },
-        {
-            id: 6,
-            title: "Shopify Training & Post Launch Support",
-            description: "We don't just hand over the keys—we provide Shopify training and ongoing support so you can confidently run and grow your store long after launch.",
-            icon: <Flag />
+            title: "Boost Performance",
+            description: "Optimize or customize your theme for faster speed, better efficiency, and improved user experience.",
+            icon: <Heart />
         },
     ];
 
@@ -50,21 +33,22 @@ export default function Process() {
     return (
         <div className="flex flex-col items-center justify-center w-full h-full py-12 px-4 md:px-6 lg:px-8">
             <h1 className="text-3xl md:text-4xl lg:text-5xl mb-6 text-gray-800 tracking-tight text-center">
-                Our Process Of Making <span className="font-bold">High<br />Quality Shopify Store</span>
+                Why do you need Shopify<span className="font-bold"><br />Theme customization services?</span>
             </h1>
-            <p className="text-sm md:text-lg text-gray-600 max-w-4xl mx-auto text-center">
-                From initial blueprint to final launch, here&apos;s how we craft each high-converting Shopify store.
+            <p className="text-sm md:text-lg text-gray-600 max-w-3xl mx-auto text-center">
+                Effective marketing and advertising materials. It is also a great tool to use when you want to present your.
             </p>
-            <div className="max-w-5xl w-full px-4 pt-12 flex flex-col items-center justify-center">
-                <div className="w-full">
-                    {steps.map((step) => (
-                        <div key={step.id} className="flex items-start space-x-8">
-                            <div className="w-15 h-12 p-2 rounded-full bg-green-100 text-center flex items-center justify-center transition-all duration-300 hover:bg-green-200 border-2 border-black overflow-hidden aspect-square">
-                                {step.icon}
+            <div className="max-w-8xl px-8 pt-12 flex flex-col items-center justify-center">
+                <div className="w-full max-w-screen flex gap-8">
+                    {needs.map((need) => (
+                        <div key={need.id} className="flex items-start space-x-6">
+                            <div className="w-24 h-14 p-3 rounded-full bg-green-100 text-center flex items-center justify-center transition-all duration-300 hover:bg-green-200 border-2 border-black overflow-hidden aspect-square">
+                                {need.icon}
                             </div>
                             <div className="flex flex-col">
-                                <h2 className="text-2xl font-semibold mb-2">{step.title}</h2>
-                                <p className="text-lg text-gray-700 mb-12">{step.description}</p>
+                                <h2 className="text-2xl font-semibold mb-2">{need.title}</h2>
+                                <p className="text-lg text-gray-700 mb-2 text-wrap">{need.description}</p>
+                                <Link href={"#"} className="text-lg text-gray-700 mb-12 text-wrap font-bold">Learn more.</Link>
                             </div>
                         </div>
                     ))}
