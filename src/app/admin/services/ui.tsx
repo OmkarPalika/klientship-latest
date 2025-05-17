@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Row } from "@tanstack/react-table";
 import { EditServiceDialog } from "./EditServiceDialog";
 import { ConfirmPopover } from "../ConfirmPopover";
+import { useAuth, hasPermission } from "../../auth/AuthContext";
 
 export function useServicesState() {
   const cards = useServicesStore((state) => state.cards);
@@ -26,6 +27,8 @@ export function useServicesLocalState() {
 }
 
 export function AddServiceButton({ onClick }: { onClick?: () => void }) {
+  const { user } = useAuth();
+  if (!hasPermission(user, "service:add")) return null;
   return (
     <Button variant="default" onClick={onClick}>Add Service</Button>
   );
@@ -111,6 +114,7 @@ export function ServiceReorderCell({ row, moveCard, canMoveUp, canMoveDown }: { 
 }
 
 export function ServiceActions({ row, services, setServices }: { row: Row<ServiceCard>, services: ServiceCard[], setServices: React.Dispatch<React.SetStateAction<ServiceCard[]>> }) {
+  const { user } = useAuth();
   const [open, setOpen] = useState(false);
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [editForm, setEditForm] = useState({
@@ -152,18 +156,20 @@ export function ServiceActions({ row, services, setServices }: { row: Row<Servic
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
-          <DropdownMenuItem onClick={handleEdit}>Edit</DropdownMenuItem>
+          {hasPermission(user, "service:edit") && <DropdownMenuItem onClick={handleEdit}>Edit</DropdownMenuItem>}
           <DropdownMenuSeparator />
-          <ConfirmPopover open={open} setOpen={setOpen} onConfirm={handleDelete} message="Are you sure you want to delete this service?">
-            <DropdownMenuItem
-              onMouseDown={handleDeleteMenuItem}
-              onSelect={e => e.preventDefault()}
-              tabIndex={0}
-              onBlur={e => e.preventDefault()}
-            >
-              Delete
-            </DropdownMenuItem>
-          </ConfirmPopover>
+          {hasPermission(user, "service:delete") && (
+            <ConfirmPopover open={open} setOpen={setOpen} onConfirm={handleDelete} message="Are you sure you want to delete this service?">
+              <DropdownMenuItem
+                onMouseDown={handleDeleteMenuItem}
+                onSelect={e => e.preventDefault()}
+                tabIndex={0}
+                onBlur={e => e.preventDefault()}
+              >
+                Delete
+              </DropdownMenuItem>
+            </ConfirmPopover>
+          )}
         </DropdownMenuContent>
       </DropdownMenu>
       <EditServiceDialog open={editDialogOpen} onOpenChange={setEditDialogOpen} editForm={editForm} setEditForm={setEditForm} onSubmit={handleEditSubmit} />

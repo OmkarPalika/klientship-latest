@@ -8,6 +8,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Input } from "@/components/ui/input";
 import { ConfirmPopover } from "../ConfirmPopover";
 import { EditUserDialog } from "./EditUserDialog";
+import { Role } from "../../auth/AuthContext";
+import { useAuth, hasPermission } from "../../auth/AuthContext";
 
 export function useUsersState() {
   const [users, setUsers] = useState<User[]>(initialUsers);
@@ -16,13 +18,17 @@ export function useUsersState() {
 }
 
 export function AddUserButton({ onClick }: { onClick?: () => void }) {
+  const { user } = useAuth();
+  if (!hasPermission(user, "user:add")) return null;
   return (
     <Button variant="default" onClick={onClick}>Add User</Button>
   );
 }
 
 export function AddUserDialog({ open, onOpenChange, onAddUser }: { open: boolean, onOpenChange: (open: boolean) => void, onAddUser: (user: Omit<User, "id">) => void }) {
-  const [form, setForm] = useState({ name: "", email: "", status: "active" });
+  const { user } = useAuth();
+  const [form, setForm] = useState({ name: "", email: "", status: "active", role: "admin" as Role });
+  if (!hasPermission(user, "user:add")) return null;
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
@@ -56,6 +62,15 @@ export function AddUserDialog({ open, onOpenChange, onAddUser }: { open: boolean
             <option value="active">Active</option>
             <option value="inactive">Inactive</option>
           </select>
+          <select
+            name="role"
+            value={form.role}
+            onChange={e => setForm(f => ({ ...f, role: e.target.value as Role }))}
+            className="w-full border px-3 py-2 rounded"
+          >
+            <option value="admin">Admin</option>
+            <option value="superadmin">Superadmin</option>
+          </select>
           <div className="flex gap-2 justify-end">
             <Button type="submit" variant="default">Add</Button>
             <DialogClose asChild>
@@ -69,6 +84,7 @@ export function AddUserDialog({ open, onOpenChange, onAddUser }: { open: boolean
 }
 
 export function UserActions({ row, users, setUsers }: { row: Row<User>, users: User[], setUsers: React.Dispatch<React.SetStateAction<User[]>> }) {
+  const { user } = useAuth();
   const [open, setOpen] = useState(false);
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [editForm, setEditForm] = useState({ name: row.original.name, email: row.original.email, status: row.original.status });
@@ -99,22 +115,25 @@ export function UserActions({ row, users, setUsers }: { row: Row<User>, users: U
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
-          <DropdownMenuItem onClick={handleEdit}>Edit</DropdownMenuItem>
+          {hasPermission(user, "user:edit") && <DropdownMenuItem onClick={handleEdit}>Edit</DropdownMenuItem>}
           <DropdownMenuSeparator />
-          <ConfirmPopover
-            open={open}
-            setOpen={setOpen}
-            onConfirm={handleDelete}
-            message="Are you sure you want to delete this user?"
-          >
-            <DropdownMenuItem
-              onMouseDown={() => setOpen(true)}
-              onSelect={e => e.preventDefault()}
-              tabIndex={0}
+          {/* Only show delete if allowed by RBAC */}
+          {hasPermission(user, "user:delete") && (
+            <ConfirmPopover
+              open={open}
+              setOpen={setOpen}
+              onConfirm={handleDelete}
+              message="Are you sure you want to delete this user?"
             >
-              Delete
-            </DropdownMenuItem>
-          </ConfirmPopover>
+              <DropdownMenuItem
+                onMouseDown={() => setOpen(true)}
+                onSelect={e => e.preventDefault()}
+                tabIndex={0}
+              >
+                Delete
+              </DropdownMenuItem>
+            </ConfirmPopover>
+          )}
         </DropdownMenuContent>
       </DropdownMenu>
       <EditUserDialog

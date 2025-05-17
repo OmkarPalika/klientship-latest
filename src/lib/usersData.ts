@@ -4,6 +4,7 @@ export type User = {
   name: string;
   email: string;
   status: string;
+  role?: "superadmin" | "admin";
 };
 
 export const users: User[] = [
