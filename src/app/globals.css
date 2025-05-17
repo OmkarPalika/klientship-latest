@@ -115,6 +115,9 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    /* Add transform: translateZ(0) or will-change: transform to force GPU acceleration */
+    transform: translateZ(0);
+    will-change: transform;
   }
   body {
     @apply bg-background text-foreground;

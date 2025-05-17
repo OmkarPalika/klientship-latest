@@ -39,5 +39,5 @@ export const initialCards: ServiceCard[] = [
       "Performance Optimization",
       "Strategic Store Structuring for Better Sales"
     ]
-  }
+  },
 ];
