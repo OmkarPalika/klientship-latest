@@ -22,7 +22,7 @@ export default function Header() {
     return (
         <h1>
             <header className="flex justify-between items-center p-4 bg-black text-white sm:px-4 md:px-6 lg:px-12" role="banner">
-                <Link href="/" aria-label="Home" className="p-2">
+                <Link href="/" aria-label="Home" className="p-2 min-w-[44px] min-h-[44px] inline-flex items-center justify-center">
                     <Image
                         src="/logo.webp"
                         width={24}

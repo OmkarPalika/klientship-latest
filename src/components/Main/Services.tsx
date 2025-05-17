@@ -3,12 +3,14 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button"; 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import type { FC } from 'react';
 import { useState } from 'react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useServicesStore } from "@/lib/servicesStore";
 import type { ServiceCard } from "@/lib/servicesData";
+
+const MotionDiv = dynamic(() => import("framer-motion").then(mod => mod.motion.div), { ssr: false });
 
 const Services: FC = () => {
     const [imageLoading, setImageLoading] = useState(true);
@@ -22,7 +24,7 @@ const Services: FC = () => {
 
     return (
         <div className="flex flex-col items-center py-8 md:py-12 min-h-screen bg-gradient-to-b from-gray-50 to-gray-200 px-4 sm:px-6 md:px-8 lg:px-16">
-            <motion.div
+            <MotionDiv
                 className="max-w-3xl mx-auto text-center mb-12 md:mb-16"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -34,10 +36,10 @@ const Services: FC = () => {
                 <p className="text-sm md:text-lg text-gray-600 max-w-2xl mx-auto text-center">
                     Avail our services at special discounted rates. Offer ends soon!
                 </p>
-            </motion.div>
+            </MotionDiv>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 w-full max-w-7xl">
                 {cards.map((plan: ServiceCard, index: number) => (
-                    <motion.div
+                    <MotionDiv
                         key={plan.title}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -117,7 +119,7 @@ const Services: FC = () => {
                                 </Button>
                             </CardFooter>
                         </Card>
-                    </motion.div>
+                    </MotionDiv>
                 ))}
             </div>
         </div>

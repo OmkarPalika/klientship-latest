@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   productionBrowserSourceMaps: true,
+  output: 'standalone',
   images: {
     // Remove remotePatterns if not using external images
     // remotePatterns: [
@@ -16,6 +17,8 @@ const nextConfig: NextConfig = {
     deviceSizes: [320, 420, 768, 1024, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     formats: ["image/avif", "image/webp"],
+    // Ensure unoptimized is false for Next.js <Image /> optimization
+    unoptimized: false,
   },
   headers: async () => {
     return [
@@ -85,7 +88,13 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizeCss: true,
-    optimizePackageImports: ['framer-motion', '@radix-ui/react-accordion', '@radix-ui/react-dialog'],
+    optimizePackageImports: [
+      'framer-motion',
+      '@radix-ui/react-accordion',
+      '@radix-ui/react-dialog',
+    ],
+    esmExternals: true,
+    // Remove modern/legacyBrowsers (not supported in Next.js 15)
   },
 };
 
