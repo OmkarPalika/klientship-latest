@@ -37,25 +37,25 @@ export default function Header() {
                     />
                 </Link>
                 <NavigationMenu aria-label="Main navigation">
-                    <NavigationMenuList className="font-bold space-x-4">
+                    <NavigationMenuList className="font-bold space-x-4 navbar-icons-group">
                         <NavigationMenuItem className="p-2">
                             <NavigationMenuLink asChild>
-                                <Link href="/" tabIndex={0} className="p-2 min-w-[44px] min-h-[44px] inline-flex items-center justify-center"><BriefcaseBusiness className='text-white group-hover:text-black' /> What we do?</Link>
+                                <Link href="/" tabIndex={0} className="navbar-icon-link"><BriefcaseBusiness className='navbar-icon' /> What we do?</Link>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
                         <NavigationMenuItem className="p-2">
                             <NavigationMenuLink asChild>
-                                <Link href="/about" tabIndex={0} className="p-2 min-w-[44px] min-h-[44px] inline-flex items-center justify-center"><PencilRuler className='text-white group-hover:text-black' /> Portfolio</Link>
+                                <Link href="/about" tabIndex={0} className="navbar-icon-link"><PencilRuler className='navbar-icon' /> Portfolio</Link>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
                         <NavigationMenuItem className="p-2">
                             <NavigationMenuLink asChild>
-                                <Link href="/contact" tabIndex={0} className="p-2 min-w-[44px] min-h-[44px] inline-flex items-center justify-center"><MessageSquarePlus className='text-white group-hover:text-black' /> Testinomials</Link>
+                                <Link href="/contact" tabIndex={0} className="navbar-icon-link"><MessageSquarePlus className='navbar-icon' /> Testinomials</Link>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
                         <NavigationMenuItem className="p-2">
                             <NavigationMenuLink asChild>
-                                <Link href="/contact" tabIndex={0} className="p-2 min-w-[44px] min-h-[44px] inline-flex items-center justify-center"><Printer className='text-white group-hover:text-black' /> Plans</Link>
+                                <Link href="/contact" tabIndex={0} className="navbar-icon-link"><Printer className='navbar-icon' /> Plans</Link>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
                     </NavigationMenuList>

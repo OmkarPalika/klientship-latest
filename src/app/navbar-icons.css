@@ -1,0 +1,34 @@
+.navbar-icons-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar-icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: box-shadow 0.2s, transform 0.2s, background 0.2s;
+  background: transparent;
+}
+
+.navbar-icon-link:hover,
+.navbar-icon-link:focus-visible {
+  background: rgba(255,255,255,0.10);
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
+  transform: scale(1.12);
+  color: #fff;
+}
+
+.navbar-icon-link .navbar-icon {
+  color: #fff;
+  transition: color 0.2s;
+}
+
+.navbar-icon-link:hover .navbar-icon,
+.navbar-icon-link:focus-visible .navbar-icon {
+  color: #fff;
+}

@@ -26,8 +26,27 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50">
-      <form onSubmit={handleSubmit} className="bg-white p-8 rounded shadow-md w-80 space-y-4">
+    <div className="flex min-h-screen items-center justify-center bg-gray-50 gap-4">
+      <div className="bg-white p-8 rounded shadow-md w-80 space-y-4 border border-gray-200">
+        <h1 className="text-2xl font-bold mb-1 text-gray-800">Credentials [Demo]</h1>
+        <div className="p-3 bg-gray-50 rounded-lg">
+          <p className="text-sm text-gray-600">
+            Username: <strong className="text-green-600">superadmin</strong>
+          </p>
+          <p className="text-sm text-gray-600">
+            Password: <strong className="text-green-600">superpass</strong>
+          </p>
+        </div>
+        <div className="p-3 bg-gray-50 rounded-lg">
+          <p className="text-sm text-gray-600">
+            Username: <strong className="text-green-600">admin</strong>
+          </p>
+          <p className="text-sm text-gray-600">
+            Password: <strong className="text-green-600">adminpass</strong>
+          </p>
+        </div>
+      </div>
+      <form onSubmit={handleSubmit} className="bg-white p-8 rounded shadow-md w-80 space-y-4 border border-gray-200">
         <h1 className="text-2xl font-bold mb-2">Admin Login</h1>
         <Input
           placeholder="Username"
