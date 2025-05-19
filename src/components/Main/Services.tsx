@@ -9,17 +9,23 @@ import { useState } from 'react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useServicesStore } from "@/lib/servicesStore";
 import type { ServiceCard } from "@/lib/servicesData";
+import { useRouter } from "next/navigation";
 
 const MotionDiv = dynamic(() => import("framer-motion").then(mod => mod.motion.div), { ssr: false });
 
 const Services: FC = () => {
     const [imageLoading, setImageLoading] = useState(true);
     const cards = useServicesStore((state: { cards: ServiceCard[] }) => state.cards);
+    const router = useRouter();
 
     const handleWhatsAppClick = (planTitle: string) => {
         const message = `Hi, I'm interested in the ${planTitle} for Shopify development services.`;
         const encodedMessage = encodeURIComponent(message);
         window.open(`https://wa.me/+919876543210?text=${encodedMessage}`, '_blank');
+    };
+
+    const handleKnowMore = (plan: ServiceCard) => {
+        router.push(`/services/${encodeURIComponent(plan.title.toLowerCase().replace(/\s+/g, '-'))}`);
     };
 
     return (
@@ -108,6 +114,7 @@ const Services: FC = () => {
                                 <Button
                                     variant="outline"
                                     className="hover:bg-gray-50 text-base w-full sm:w-auto px-6 py-4 min-h-[48px]"
+                                    onClick={() => handleKnowMore(plan)}
                                 >
                                     Know More
                                 </Button>
